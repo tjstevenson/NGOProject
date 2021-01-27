@@ -1,7 +1,9 @@
 package com.summitworks.entity;
-//hello from cris
-//hello again
-//hello number three
+
+import javax.persistence.Entity;
+
+//Created by Critian
+@Entity
 public class Events {
 
 }
