@@ -23,7 +23,7 @@ public class Events {
 	private String eventCategory;
 	@Column(name="event_start_date")
 	private Date startDate; 
-	@Column(name="event_end_time")
+	@Column(name="event_end_date")
 	private Date endDate; 
 	@Column(name="event_start_time")
 	private Date startTime;  

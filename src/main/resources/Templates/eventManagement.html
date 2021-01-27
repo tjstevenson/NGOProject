@@ -3,23 +3,93 @@
       xmlns:th="http://www.thymeleaf.org">
       <head>
 <meta charset="ISO-8859-1">
-<title>Hotel Application</title>
+<title>Event Management</title>
+<style>
+        body{
+            background: rgb(202, 200, 200);
+            color: white;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+        }
+        header {
+            background: rgb(202, 200, 200);
+            color: black;
+            margin: 0px;
+            height: 30px;
+        }
+        section{
+            background: blue;
+            color: red;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            height: 85%;
+                        
+        }
+        div.div1{
+            background:  rgb(202, 200, 200);
+            width: 150px; 
+        }
+        div.div2{
+            background: white;
+            width: 100%;
+            height: 100%;
+            
+        }
+        button{
+            width: 100%;
+
+        }
+        footer{
+            background:  rgb(202, 200, 200);
+            color: white;
+            padding: 10px 20px;
+        }
+</style>
 </head>
 <body>
-<h1> Hotel Application </h1>
-<span th:text = "'Hello Welcome to, '+ ${HotelName}"></span>
+
+<header> 
+		<h3> 
+				NGO
+		</h3>
+</header>
+    <section> 
+        <div class="div1">
+            <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+            <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+            <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+        </div>
+        <div class="div2">
+        B
+        <br>
+		  <br>
+		 <a th:href="@{/request_room}"> click to add Reservation</a>
+		  <br>
+		  <br>
+		  <a th:href="@{/cancel_room}"> click to cancel Reservation</a>
+		  <br>
+		  <br>
+		  <a th:href="@{/list_room}"> click to show rooms</a>
+		   <br>
+		  <br>
+		  <a th:href="@{/option}"> click to more options</a>
+        
+        
+        
+        
+        </div>
+    </section>
+    <footer> footer
+
+    </footer>
 
  </body>
-  <br>
-  <br>
- <a th:href="@{/request_room}"> click to add Reservation</a>
-  <br>
-  <br>
-  <a th:href="@{/cancel_room}"> click to cancel Reservation</a>
-  <br>
-  <br>
-  <a th:href="@{/list_room}"> click to show rooms</a>
-   <br>
-  <br>
-  <a th:href="@{/option}"> click to more options</a>
+
+  
 </html>

@@ -11,6 +11,6 @@ public class EventController {
 	public String welcomeHotel(Model model)
 	{
 
-		return "index";
+		return "eventManagement";
 	}
 }
