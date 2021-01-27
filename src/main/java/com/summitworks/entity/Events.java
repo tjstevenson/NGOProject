@@ -14,135 +14,135 @@ public class Events {
 	// Creation of attributes 
 	@Id
 	@Column(name="event_id")
-	private int EventID; 
+	private int eventID; 
 	@Column(name="event_name")
-	private String Event_Name;
+	private String eventName;
 	@Column(name="event_description")
-	private String Event_Description; 
+	private String eventDescription; 
 	@Column(name="event_category")
-	private String Event_Category;
+	private String eventCategory;
 	@Column(name="event_start_date")
-	private Date Start_Date; 
+	private Date startDate; 
 	@Column(name="event_end_time")
-	private Date End_Date; 
+	private Date endDate; 
 	@Column(name="event_start_time")
-	private Date Start_time;  
+	private Date startTime;  
 	@Column(name="event_end_time")
-	private Date End_time; 
+	private Date endTime; 
 	@Column(name="event_location")
-	private String Location; 
+	private String location; 
 	@Column(name="event_allow_registration")
-	private boolean Allow_registration;
+	private boolean allowRegistration;
 	@Column(name="event_image")
-	private String Event_Image;
+	private String eventImage;
 	@Column(name="event_adult_ticket_price")
-	private double Adult_Ticket_Price; 
+	private double adultTicketPrice; 
 	@Column(name="event_child_ticket_price")
-	private double Child_Ticket_Price;
+	private double childTicketPrice;
 	//Constructor
-	public Events(int eventID, String event_Name, String event_Description, String event_Category, Date start_Date,
-			Date end_Date, Date start_time, Date end_time, String location, boolean allow_registration,
-			String event_Image, double adult_Ticket_Price, double child_Ticket_Price) {
-		EventID = eventID;
-		Event_Name = event_Name;
-		Event_Description = event_Description;
-		Event_Category = event_Category;
-		Start_Date = start_Date;
-		End_Date = end_Date;
-		Start_time = start_time;
-		End_time = end_time;
-		Location = location;
-		Allow_registration = allow_registration;
-		Event_Image = event_Image;
-		Adult_Ticket_Price = adult_Ticket_Price;
-		Child_Ticket_Price = child_Ticket_Price;
+	public Events(int eventID, String eventName, String eventDescription, String eventCategory, Date startDate,
+			Date endDate, Date startTime, Date endTime, String location, boolean allowRegistration, String eventImage,
+			double adultTicketPrice, double childTicketPrice) {
+		this.eventID = eventID;
+		this.eventName = eventName;
+		this.eventDescription = eventDescription;
+		this.eventCategory = eventCategory;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.location = location;
+		this.allowRegistration = allowRegistration;
+		this.eventImage = eventImage;
+		this.adultTicketPrice = adultTicketPrice;
+		this.childTicketPrice = childTicketPrice;
 	}
 	//Setter and Getter
 	public int getEventID() {
-		return EventID;
+		return eventID;
 	}
 	public void setEventID(int eventID) {
-		EventID = eventID;
+		this.eventID = eventID;
 	}
-	public String getEvent_Name() {
-		return Event_Name;
+	public String getEventName() {
+		return eventName;
 	}
-	public void setEvent_Name(String event_Name) {
-		Event_Name = event_Name;
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
 	}
-	public String getEvent_Description() {
-		return Event_Description;
+	public String getEventDescription() {
+		return eventDescription;
 	}
-	public void setEvent_Description(String event_Description) {
-		Event_Description = event_Description;
+	public void setEventDescription(String eventDescription) {
+		this.eventDescription = eventDescription;
 	}
-	public String getEvent_Category() {
-		return Event_Category;
+	public String getEventCategory() {
+		return eventCategory;
 	}
-	public void setEvent_Category(String event_Category) {
-		Event_Category = event_Category;
+	public void setEventCategory(String eventCategory) {
+		this.eventCategory = eventCategory;
 	}
-	public Date getStart_Date() {
-		return Start_Date;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart_Date(Date start_Date) {
-		Start_Date = start_Date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd_Date() {
-		return End_Date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd_Date(Date end_Date) {
-		End_Date = end_Date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	public Date getStart_time() {
-		return Start_time;
+	public Date getStartTime() {
+		return startTime;
 	}
-	public void setStart_time(Date start_time) {
-		Start_time = start_time;
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
-	public Date getEnd_time() {
-		return End_time;
+	public Date getEndTime() {
+		return endTime;
 	}
-	public void setEnd_time(Date end_time) {
-		End_time = end_time;
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 	public String getLocation() {
-		return Location;
+		return location;
 	}
 	public void setLocation(String location) {
-		Location = location;
+		this.location = location;
 	}
-	public boolean isAllow_registration() {
-		return Allow_registration;
+	public boolean isAllowRegistration() {
+		return allowRegistration;
 	}
-	public void setAllow_registration(boolean allow_registration) {
-		Allow_registration = allow_registration;
+	public void setAllowRegistration(boolean allowRegistration) {
+		this.allowRegistration = allowRegistration;
 	}
-	public String getEvent_Image() {
-		return Event_Image;
+	public String getEventImage() {
+		return eventImage;
 	}
-	public void setEvent_Image(String event_Image) {
-		Event_Image = event_Image;
+	public void setEventImage(String eventImage) {
+		this.eventImage = eventImage;
 	}
-	public double getAdult_Ticket_Price() {
-		return Adult_Ticket_Price;
+	public double getAdultTicketPrice() {
+		return adultTicketPrice;
 	}
-	public void setAdult_Ticket_Price(double adult_Ticket_Price) {
-		Adult_Ticket_Price = adult_Ticket_Price;
+	public void setAdultTicketPrice(double adultTicketPrice) {
+		this.adultTicketPrice = adultTicketPrice;
 	}
-	public double getChild_Ticket_Price() {
-		return Child_Ticket_Price;
+	public double getChildTicketPrice() {
+		return childTicketPrice;
 	}
-	public void setChild_Ticket_Price(double child_Ticket_Price) {
-		Child_Ticket_Price = child_Ticket_Price;
+	public void setChildTicketPrice(double childTicketPrice) {
+		this.childTicketPrice = childTicketPrice;
 	}
 	@Override
 	public String toString() {
-		return "Events [EventID=" + EventID + ", Event_Name=" + Event_Name + ", Event_Description=" + Event_Description
-				+ ", Event_Category=" + Event_Category + ", Start_Date=" + Start_Date + ", End_Date=" + End_Date
-				+ ", Start_time=" + Start_time + ", End_time=" + End_time + ", Location=" + Location
-				+ ", Allow_registration=" + Allow_registration + ", Event_Image=" + Event_Image
-				+ ", Adult_Ticket_Price=" + Adult_Ticket_Price + ", Child_Ticket_Price=" + Child_Ticket_Price + "]";
+		return "Events [eventID=" + eventID + ", eventName=" + eventName + ", eventDescription=" + eventDescription
+				+ ", eventCategory=" + eventCategory + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", location=" + location
+				+ ", allowRegistration=" + allowRegistration + ", eventImage=" + eventImage + ", adultTicketPrice="
+				+ adultTicketPrice + ", childTicketPrice=" + childTicketPrice + "]";
 	}
-	
+		
 }

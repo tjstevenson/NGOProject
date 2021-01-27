@@ -45,10 +45,6 @@ public class User {
 
 	public User(){}
 
-	public Set<Events> getEvents() {
-		return events;
-	}
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -100,7 +96,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + ", events=" + events + "]";
+				+ ", password=" + password + ", role=" + role + ", events="  + "]";
 	}
 	
 	
