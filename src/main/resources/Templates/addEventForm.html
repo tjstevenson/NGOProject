@@ -40,12 +40,7 @@
             color: black;
             
         }
-        div.div2 div.addEvent{
-            background: white;
-            width: 100%;
-            color: black;
-            vertical-align: middle;
-            text-align: right;
+        div.div2 div.h3{
              margin: 0px;
             padding: 0px;
             font-size: 30px;
@@ -74,7 +69,7 @@
     <section> 
         <div class="div1">
         		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
-        		<a th:href="@{/EventsManangemment}"> <button>Events Management</button></a>
+        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
         		<a th:href="@{/UserView}"> <button>User View</button></a>
 	            
         </div>
@@ -82,51 +77,46 @@
         
 		        <div class="h3">
 						<h3>
-						Event Management
+						Add event 
 						</h3>
 				</div>
+				<div class="form">
+						<form action="#" th:action="@{/insert_event}" th:object="${events}" method="post">
+		            <table>
+		                <tr>
+		                    <td>Event Name:</td>
+		                    <td><input type="text" th:field="*{eventName}" /></td>
+		                    <td th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Event Name Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Description:</td>
+		                    <td><input type="text" th:field="*{eventDescription}" /></td>
+		                    <td th:if="${#fields.hasErrors('eventDescription')}" th:errors="*{eventDescription}">Event Description Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Category:</td>
+		                    <td>
+			                    <select th:field="*{eventCategory}">
+							    <option th:value="'Conference'" th:text="Conference"></option>
+							    <option th:value="'Seminar'" th:text="Seminar"></option>
+							    <option th:value="'Presentation'" th:text="Presentation"></option>
+								</select>
+		                    </td>
+		                    <td th:if="${#fields.hasErrors('eventCategory')}" th:errors="*{eventCategory}">Event Category Error</td>
+		                </tr>
+		                <tr>
+		                    <td><button type="submit">Submit</button></td>
+		                </tr>
+		            </table>
+        </form>
 				
-				<div class="addEvent">
-		 		<a th:href="@{/EventsManagemet/insert_event}"> Add a New Event</a>
+				
+				
+				
 				</div>
+
 				
-				<div class="table">
-						 <table border="1" cellpadding="10">
-				        <thead>
-				            <tr>
-				                <th>Event ID</th>
-				                <th>Event </th>
-				                <th>Description </th>
-				                <th>Category</th>
-				                <th>Location</th>
-				                <th>Start Date</th>
-				                <th>End Date</th>
-				                <th>Start Time</th>
-				                <th>End Time</th>
-				                <th>Allow Registration</th>
-				                <th>Adult Ticket Price</th>
-				                <th>Child Ticket Price</th>
-				                <th></th>      
-				            </tr>
-					        </thead>
-					        <tbody>
-					        <tr th:each="events:${events}">
-					            <td th:text="${events.eventID}"> Event ID</td>
-					            <td th:text="${events.eventName}"> Event</td>
-					        	<td th:text="${events.eventDescription}"> Description</td>
-					        	<td th:text="${events.eventCategory}"> Category</td>
-					        	<td th:text="${events.location}"> Location</td>
-					        	<td th:text="${events.startDate}"> Start Date</td>
-					        	<td th:text="${events.endDate}"> End Date</td>
-					        	<td th:text="${events.startTime}"> Start Time</td>
-					        	<td th:text="${events.endTime}"> End Time</td>
-					        	<td th:text="${events.eventRegistration}"> Allow Registration</td>
-					        	<td th:text="${events.adultTicketPrice}"> Adult Ticket Price</td>
-					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
-					        </tr>
-					        </tbody>
-					        </table>
-		        </div>
+				
         </div>
     </section>
 

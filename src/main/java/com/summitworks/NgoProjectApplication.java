@@ -28,11 +28,7 @@ public class NgoProjectApplication extends SpringBootServletInitializer implemen
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Events event = new Events();
-		event.setEventName("Test");
-		event.setEventID(1);
-		event.setEventRegistration(true);
-		EventsRepo.save(event);
+	
 		
 		
 		

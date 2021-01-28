@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import com.summitworks.entity.*;
 import com.summitworks.repo.*;
 
@@ -33,19 +32,19 @@ public class EventController implements WebMvcConfigurer {
 		return "eventManagement";
 	}
 
-	@RequestMapping("/EventsManagement/insert_event")
+	@RequestMapping("/insert_event")
 	public String requestRoom(Model model)
-	
 	{
 		Events e = new Events();
 		model.addAttribute(e);
-		return "addEventManagement";
+		return "addEventForm";
 	}
-	@RequestMapping(value="/save",method = RequestMethod.POST)
+	@RequestMapping(value="/insert_event",method = RequestMethod.POST)
 	public String saveReservation(@Valid @ModelAttribute("events") Events r,BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors()) {
-			return "addEventManagement";
+			System.out.println("error");
+			return "addEventForm";
 		}
 		String eventName=r.getEventName();
 		String eventDescription=r.getEventDescription();
@@ -72,10 +71,8 @@ public class EventController implements WebMvcConfigurer {
 		event.setChildTicketPrice(childTicketPrice);
 		EventsRepo.save(event);
 
-		return "redirect:/list_room";
+		return "redirect:/EventsManagement";
 	}
-
-
 	@RequestMapping("/UserManagement")
 	public String userManagment(Model model)
 	{
