@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <head>
+<meta charset="ISO-8859-1">
+<title>Event Management</title>
+<style>
+        body{
+            background: rgb(202, 200, 200);
+            color: white;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+        }
+        header {
+            background: rgb(202, 200, 200);
+            margin: 0px;
+            height: 40px;
+        }
+        section{
+            background: blue;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+                        
+        }
+        div.div1{
+            background:  rgb(202, 200, 200);
+            width: 20%; 
+        }
+        div.div2{
+            background: white;
+            width: 100%;
+            height: 100%;
+            color: black;
+            
+        }
+        div.div2 div.addEvent{
+            background: white;
+            width: 100%;
+            color: black;
+            vertical-align: middle;
+            text-align: right;
+             margin: 0px;
+            padding: 0px;
+            font-size: 30px;
+        }
+        header h1{
+         color: black;
+         text-align: left;
+         height: 100%;
+    	 vertical-align: middle;
+        
+        }
+        button{
+            width: 100%;
+            height: 50px;
+
+        }
+</style>
+</head>
+<body>
+
+<header> 
+		<h1> 
+				NGO
+		</h1>
+</header>
+    <section> 
+        <div class="div1">
+        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
+        		<a th:href="@{/EventsManangemment}"> <button>Events Management</button></a>
+        		<a th:href="@{/UserView}"> <button>User View</button></a>
+	            
+        </div>
+        <div class="div2">
+        
+		        <div class="h3">
+						<h3>
+						Event Management
+						</h3>
+				</div>
+				
+				<div class="addEvent">
+		 		<a th:href="@{/EventsManagemet/insert_event}"> Add a New Event</a>
+				</div>
+				
+				<div class="table">
+						 <table border="1" cellpadding="10">
+				        <thead>
+				            <tr>
+				                <th>Event ID</th>
+				                <th>Event </th>
+				                <th>Description </th>
+				                <th>Category</th>
+				                <th>Location</th>
+				                <th>Start Date</th>
+				                <th>End Date</th>
+				                <th>Start Time</th>
+				                <th>End Time</th>
+				                <th>Allow Registration</th>
+				                <th>Adult Ticket Price</th>
+				                <th>Child Ticket Price</th>
+				                <th></th>      
+				            </tr>
+					        </thead>
+					        <tbody>
+					        <tr th:each="events:${events}">
+					            <td th:text="${events.eventID}"> Event ID</td>
+					            <td th:text="${events.eventName}"> Event</td>
+					        	<td th:text="${events.eventDescription}"> Description</td>
+					        	<td th:text="${events.eventCategory}"> Category</td>
+					        	<td th:text="${events.location}"> Location</td>
+					        	<td th:text="${events.startDate}"> Start Date</td>
+					        	<td th:text="${events.endDate}"> End Date</td>
+					        	<td th:text="${events.startTime}"> Start Time</td>
+					        	<td th:text="${events.endTime}"> End Time</td>
+					        	<td th:text="${events.eventRegistration}"> Allow Registration</td>
+					        	<td th:text="${events.adultTicketPrice}"> Adult Ticket Price</td>
+					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
+					        </tr>
+					        </tbody>
+					        </table>
+		        </div>
+        </div>
+    </section>
+
+ </body>
+
+  
+</html>

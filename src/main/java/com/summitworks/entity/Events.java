@@ -4,15 +4,22 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="events")
@@ -24,22 +31,37 @@ public class Events {
 
 	@Column(name="event_id")
 	private int eventID; 
-	
+	@NotBlank
+	@Size(min = 5,max=50)
 	private String eventName;
+	@NotBlank
 	private String eventDescription; 
+	@NotBlank
 	private String eventCategory;
-	private Date startDate; 
+	@DateTimeFormat(pattern="yyy-mm-dd")
+	private Date startDate;
+	@DateTimeFormat(pattern="yyy-mm-dd")
 	private Date endDate; 
-	private Date startTime;  
+	@NotBlank
+	private Date startTime; 
+	@NotBlank
 	private Date endTime; 
+	@NotNull
+	@Size(min = 5, message = "Event location should have at least 5 characters")
 	private String location; 
 	private String eventImage;
-	private String eventRegistration;
+	
+	@AssertTrue
+	private boolean eventRegistration;
+	@Min(value=5)
+	@Max(value=25)
 	private double adultTicketPrice; 
+	@Min(value=2)
+	@Max(value=10)
 	private double childTicketPrice;
 	//Constructor
 	public Events(int eventID, String eventName, String eventDescription, String eventCategory, Date startDate,
-			Date endDate, Date startTime, Date endTime, String location, String eventImage, String eventRegistration,
+			Date endDate, Date startTime, Date endTime, String location, String eventImage, @AssertTrue boolean eventRegistration,
 			double adultTicketPrice, double childTicketPrice) {
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -98,7 +120,7 @@ public class Events {
 	public String getEventImage() {
 		return eventImage;
 	}
-	public String getEventRegistration() {
+	public @AssertTrue boolean getEventRegistration() {
 		return eventRegistration;
 	}
 	public double getAdultTicketPrice() {
@@ -137,7 +159,7 @@ public class Events {
 	public void setEventImage(String eventImage) {
 		this.eventImage = eventImage;
 	}
-	public void setEventRegistration(String eventRegistration) {
+	public void setEventRegistration(@AssertTrue boolean eventRegistration) {
 		this.eventRegistration = eventRegistration;
 	}
 	public void setAdultTicketPrice(double adultTicketPrice) {
