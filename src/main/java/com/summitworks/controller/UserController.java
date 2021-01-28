@@ -22,8 +22,11 @@ public class UserController implements WebMvcConfigurer {
 	public String userManagment(Model model)
 	{
 		List<User> listUsers=UserRepo.findAll();
-		model.addAttribute("user",listUsers);
-		return "UserManagement";
+		model.addAttribute("users",listUsers);
+		for(User u: listUsers) {
+			System.out.println(u);
+		}		
+		return "userManagement";
 	}
 	
 }
