@@ -36,7 +36,7 @@ class NgoProjectApplicationTests {
 		User user = new User("Bob", "Smith", "bob@mail.com","password", "admin");
 		
 		Events event = new Events(1,"name", "description", "category", d1, d2,
-				d3, d4,"location",true, "image", 20.00, 20.00);
+				d3, d4,"location","true", "image", 20.00, 20.00);
 	
 		user.getEvents().add(event);
 		event.getUsers().add(user);
