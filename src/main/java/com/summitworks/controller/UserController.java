@@ -14,19 +14,17 @@ import com.summitworks.repo.UserRepo;
 @Controller
 public class UserController implements WebMvcConfigurer {
 
-
 	@Autowired
 	UserRepo UserRepo;
-	
+
 	@RequestMapping("/UserManagement")
-	public String userManagment(Model model)
-	{
-		List<User> listUsers=UserRepo.findAll();
-		model.addAttribute("users",listUsers);
-		for(User u: listUsers) {
+	public String userManagment(Model model) {
+		List<User> listUsers = UserRepo.findAll();
+		model.addAttribute("users", listUsers);
+		for (User u : listUsers) {
 			System.out.println(u);
-		}		
+		}
 		return "userManagement";
 	}
-	
+
 }

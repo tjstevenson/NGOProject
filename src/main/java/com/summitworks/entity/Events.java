@@ -1,5 +1,6 @@
 package com.summitworks.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -38,20 +40,16 @@ public class Events {
 	private String eventDescription; 
 	@NotBlank
 	private String eventCategory;
-	@DateTimeFormat(pattern = "mm/dd/yyyy h:mm a")
-	private Date startDate;
-	@DateTimeFormat(pattern = "mm/dd/yyyy h:mm a")
-	private Date endDate; 
-	@NotNull
-	private int startTime; 
-	@NotNull
-	private int endTime; 
+	@Future
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  
+	private LocalDateTime startDate;
+	@Future
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private LocalDateTime endDate; 
 	@NotNull
 	@Size(min = 5, message = "Event location should have at least 5 characters")
 	private String location; 
 	private String eventImage;
-	
-	@AssertTrue
 	private boolean eventRegistration;
 	@Min(value=5)
 	@Max(value=25)
@@ -60,8 +58,8 @@ public class Events {
 	@Max(value=10)
 	private double childTicketPrice;
 	//Constructor
-	public Events(int eventID, String eventName, String eventDescription, String eventCategory, Date startDate,
-			Date endDate,int startTime, int endTime, String location, String eventImage, @AssertTrue boolean eventRegistration,
+	public Events(int eventID, String eventName, String eventDescription, String eventCategory, LocalDateTime startDate,
+			LocalDateTime endDate, String location, String eventImage, @AssertTrue boolean eventRegistration,
 			double adultTicketPrice, double childTicketPrice) {
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -69,8 +67,6 @@ public class Events {
 		this.eventCategory = eventCategory;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.startTime = startTime;
-		this.endTime = endTime;
 		this.location = location;
 		this.eventImage = eventImage;
 		this.eventRegistration = eventRegistration;
@@ -102,17 +98,11 @@ public class Events {
 	public String getEventCategory() {
 		return eventCategory;
 	}
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
-	}
-	public int getStartTime() {
-		return startTime;
-	}
-	public int getEndTime() {
-		return endTime;
 	}
 	public String getLocation() {
 		return location;
@@ -141,18 +131,13 @@ public class Events {
 	public void setEventCategory(String eventCategory) {
 		this.eventCategory = eventCategory;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
-	public void setStartTime(@NotBlank int startTime) {
-		this.startTime = startTime;
-	}
-	public void setEndTime(@NotBlank int endTime) {
-		this.endTime = endTime;
-	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}

@@ -1,5 +1,6 @@
 package com.summitworks.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,52 +23,45 @@ public class EventController implements WebMvcConfigurer {
 	EventsRepo EventsRepo;
 
 	@RequestMapping("/EventsManagement")
-	public String welcomeHotel(Model model)
-	{
-		List<Events> listEvents=EventsRepo.findAll();
-		model.addAttribute("events",listEvents);
+	public String welcomeHotel(Model model) {
+		List<Events> listEvents = EventsRepo.findAll();
+		model.addAttribute("events", listEvents);
 		return "eventManagement";
 	}
 
 	@RequestMapping("/insert_event")
-	public String requestRoom(Model model)
-	{
+	public String requestRoom(Model model) {
 		Events e = new Events();
 		model.addAttribute(e);
 		return "addEventForm";
 	}
-	@RequestMapping(value="/insert_event",method = RequestMethod.POST)
-	public String saveReservation(@Valid @ModelAttribute("events") Events r,BindingResult bindingResult)
-	{
+
+	@RequestMapping(value = "/insert_event", method = RequestMethod.POST)
+	public String saveReservation(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
 			return "addEventForm";
 		}
-		String eventName=r.getEventName();
-		String eventDescription=r.getEventDescription();
-		String eventCategory=r.getEventCategory();
-		Date startDate=r.getStartDate();
-		Date endDate=r.getEndDate();
-		int startTime=r.getStartTime();
-		int endtTime=r.getEndTime();
+		String eventName = r.getEventName();
+		String eventDescription = r.getEventDescription();
+		String eventCategory = r.getEventCategory();
+		LocalDateTime startDate = r.getStartDate();
+		LocalDateTime endDate = r.getEndDate();
 		String location = r.getLocation();
-		boolean eventRegistration=r.getEventRegistration();
-		double adultTicketPrice=r.getAdultTicketPrice();
-		double childTicketPrice=r.getChildTicketPrice();
+		boolean eventRegistration = r.getEventRegistration();
+		double adultTicketPrice = r.getAdultTicketPrice();
+		double childTicketPrice = r.getChildTicketPrice();
 		Events event = new Events();
 		event.setEventName(eventName);
 		event.setEventDescription(eventDescription);
 		event.setEventCategory(eventCategory);
 		event.setStartDate(startDate);
 		event.setEndDate(endDate);
-		event.setStartTime(startTime);
-		event.setEndTime(endtTime);
 		event.setLocation(location);
 		event.setEventRegistration(eventRegistration);
 		event.setAdultTicketPrice(adultTicketPrice);
 		event.setChildTicketPrice(childTicketPrice);
 		EventsRepo.save(event);
-
 		return "redirect:/EventsManagement";
 	}
 

@@ -45,6 +45,11 @@
             padding: 0px;
             font-size: 30px;
         }
+         div.div2 div.form{
+            width: 300px;
+    		margin: 0 auto;
+            
+        }
         header h1{
          color: black;
          text-align: left;
@@ -108,6 +113,36 @@
 		                    <td>Start Date:</td>
 		                    <td><input type="datetime-local"th:field="*{startDate}"></td>
 		                    <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Start Date Error</td>
+		                </tr>
+		                <tr>
+		                    <td>End Date:</td>
+		                    <td><input type="datetime-local"th:field="*{endDate}"></td>
+		                    <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">End Date Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Location:</td>
+		                    <td><input type="text" th:field="*{location}" /></td>
+		                    <td th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Event Location Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Registration:</td>
+		                    <td>
+			                    <select th:field="*{eventRegistration}">
+							    <option th:value="'true'" th:text="OpenRegistration"></option>
+							    <option th:value="'false'" th:text="CloseRegistration"></option>
+								</select>
+		                    </td>
+		                    <td th:if="${#fields.hasErrors('eventRegistration')}" th:errors="*{eventRegistration}">Event Registration Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Adult Ticket Price:</td>
+		                    <td><input type="text" th:field="*{adultTicketPrice}" placeholder="double" /></td>
+		                    <td th:if="${#fields.hasErrors('adultTicketPrice')}" th:errors="*{adultTicketPrice}">Adult ticket price Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Child Ticket Price:</td>
+		                    <td><input type="text" th:field="*{childTicketPrice}" placeholder="double" /></td>
+		                    <td th:if="${#fields.hasErrors('childTicketPrice')}" th:errors="*{childTicketPrice}">Child ticket price Error</td>
 		                </tr>
 		                <tr>
 		                    <td><button type="submit">Submit</button></td>
