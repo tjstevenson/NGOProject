@@ -3,6 +3,7 @@ package com.summitworks.controller;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.summitworks.entity.*;
 import com.summitworks.repo.*;
@@ -30,39 +33,34 @@ public class EventController implements WebMvcConfigurer {
 	}
 
 	@RequestMapping("/insert_event")
-	public String requestRoom(Model model) {
+	public String insertEvent(Model model) {
 		Events e = new Events();
 		model.addAttribute(e);
 		return "addEventForm";
 	}
 
 	@RequestMapping(value = "/insert_event", method = RequestMethod.POST)
-	public String saveReservation(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
+	public String saveEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
 			return "addEventForm";
 		}
-		String eventName = r.getEventName();
-		String eventDescription = r.getEventDescription();
-		String eventCategory = r.getEventCategory();
-		LocalDateTime startDate = r.getStartDate();
-		LocalDateTime endDate = r.getEndDate();
-		String location = r.getLocation();
-		boolean eventRegistration = r.getEventRegistration();
-		double adultTicketPrice = r.getAdultTicketPrice();
-		double childTicketPrice = r.getChildTicketPrice();
-		Events event = new Events();
-		event.setEventName(eventName);
-		event.setEventDescription(eventDescription);
-		event.setEventCategory(eventCategory);
-		event.setStartDate(startDate);
-		event.setEndDate(endDate);
-		event.setLocation(location);
-		event.setEventRegistration(eventRegistration);
-		event.setAdultTicketPrice(adultTicketPrice);
-		event.setChildTicketPrice(childTicketPrice);
-		EventsRepo.save(event);
+		EventsRepo.save(r);
 		return "redirect:/EventsManagement";
 	}
+	@RequestMapping("/edit_event/{id}")
+	public ModelAndView showEditEvent(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_event");
+		Optional<Events> e =EventsRepo.findById(id);
+		mav.addObject("events",e);
+		return mav;
+	}
+	@RequestMapping("/delete_event/{id}")
+	public String deleteEvent(@PathVariable(name = "id") int id) {
+		EventsRepo.deleteById(id);
+		return "redirect:/EventsManagement";
+	}
+	
+	
 
 }

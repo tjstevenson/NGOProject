@@ -59,7 +59,7 @@ public class Events {
 	private double childTicketPrice;
 	//Constructor
 	public Events(int eventID, String eventName, String eventDescription, String eventCategory, LocalDateTime startDate,
-			LocalDateTime endDate, String location, String eventImage, @AssertTrue boolean eventRegistration,
+			LocalDateTime endDate, String location, String eventImage, boolean eventRegistration,
 			double adultTicketPrice, double childTicketPrice) {
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -110,7 +110,7 @@ public class Events {
 	public String getEventImage() {
 		return eventImage;
 	}
-	public @AssertTrue boolean getEventRegistration() {
+	public boolean getEventRegistration() {
 		return eventRegistration;
 	}
 	public double getAdultTicketPrice() {
@@ -144,7 +144,7 @@ public class Events {
 	public void setEventImage(String eventImage) {
 		this.eventImage = eventImage;
 	}
-	public void setEventRegistration(@AssertTrue boolean eventRegistration) {
+	public void setEventRegistration(boolean eventRegistration) {
 		this.eventRegistration = eventRegistration;
 	}
 	public void setAdultTicketPrice(double adultTicketPrice) {

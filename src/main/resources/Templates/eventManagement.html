@@ -119,6 +119,9 @@
 					        	<td th:text="${events.eventRegistration}"> Allow Registration</td>
 					        	<td th:text="${events.adultTicketPrice}"> Adult Ticket Price</td>
 					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
+					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
+					        	<td> <a th:href="@{/edit_event/{id}(id=${events.eventID})}"> Edit</a></td>
+					        	<td> <a th:href="@{/delete_event/{id}(id=${events.eventID})}"> Delete</a></td>
 					        </tr>
 					        </tbody>
 					        </table>
