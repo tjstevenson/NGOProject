@@ -31,7 +31,7 @@ public class NgoProjectApplication extends SpringBootServletInitializer implemen
 		Events event = new Events();
 		event.setEventName("Test");
 		event.setEventID(1);
-		event.setAllowRegistration("true");
+		event.setEventRegistration("true");
 		EventsRepo.save(event);
 		
 		
