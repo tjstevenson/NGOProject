@@ -43,9 +43,9 @@ public class Events {
 	@DateTimeFormat(pattern="yyy-mm-dd")
 	private Date endDate; 
 	@NotBlank
-	private Date startTime; 
+	private int startTime; 
 	@NotBlank
-	private Date endTime; 
+	private int endTime; 
 	@NotNull
 	@Size(min = 5, message = "Event location should have at least 5 characters")
 	private String location; 
@@ -61,7 +61,7 @@ public class Events {
 	private double childTicketPrice;
 	//Constructor
 	public Events(int eventID, String eventName, String eventDescription, String eventCategory, Date startDate,
-			Date endDate, Date startTime, Date endTime, String location, String eventImage, @AssertTrue boolean eventRegistration,
+			Date endDate, @NotBlank int startTime, @NotBlank int endTime, String location, String eventImage, @AssertTrue boolean eventRegistration,
 			double adultTicketPrice, double childTicketPrice) {
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -108,10 +108,10 @@ public class Events {
 	public Date getEndDate() {
 		return endDate;
 	}
-	public Date getStartTime() {
+	public @NotBlank int getStartTime() {
 		return startTime;
 	}
-	public Date getEndTime() {
+	public @NotBlank int getEndTime() {
 		return endTime;
 	}
 	public String getLocation() {
@@ -147,10 +147,10 @@ public class Events {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public void setStartTime(Date startTime) {
+	public void setStartTime(@NotBlank int startTime) {
 		this.startTime = startTime;
 	}
-	public void setEndTime(Date endTime) {
+	public void setEndTime(@NotBlank int endTime) {
 		this.endTime = endTime;
 	}
 	public void setLocation(String location) {
