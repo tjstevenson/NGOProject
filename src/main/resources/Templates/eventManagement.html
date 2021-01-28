@@ -18,13 +18,11 @@
         }
         header {
             background: rgb(202, 200, 200);
-            color: black;
             margin: 0px;
-            height: 30px;
+            height: 40px;
         }
         section{
             background: blue;
-            color: red;
             padding: 0;
             display: flex;
             flex-direction: row;
@@ -33,13 +31,21 @@
         }
         div.div1{
             background:  rgb(202, 200, 200);
-            width: 150px; 
+            width: 20%; 
         }
         div.div2{
             background: white;
             width: 100%;
             height: 100%;
+            color: black;
             
+        }
+        header h1{
+         color: black;
+         text-align: left;
+         height: 100%;
+    	 vertical-align: middle;
+        
         }
         button{
             width: 100%;
@@ -55,9 +61,9 @@
 <body>
 
 <header> 
-		<h3> 
+		<h1> 
 				NGO
-		</h3>
+		</h1>
 </header>
     <section> 
         <div class="div1">
@@ -66,19 +72,52 @@
             <button type="button" onclick="alert('Hello World!')">Click Me!</button>
         </div>
         <div class="div2">
-        B
+		<h3>
+		Event Management
+		</h3>
+		
         <br>
 		  <br>
-		 <a th:href="@{/request_room}"> click to add Reservation</a>
-		  <br>
-		  <br>
-		  <a th:href="@{/cancel_room}"> click to cancel Reservation</a>
-		  <br>
-		  <br>
-		  <a th:href="@{/list_room}"> click to show rooms</a>
-		   <br>
-		  <br>
-		  <a th:href="@{/option}"> click to more options</a>
+		 <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Event </th>
+                <th>Description </th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Allow Registration</th>
+                <th>Adult Ticket Price</th>
+                <th>Child Ticket Price</th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="events:${events}">
+            <td th:text="${events.eventID}"> Event ID</td>
+            <td th:text="${events.eventName}"> Event</td>
+        	<td th:text="${events.eventDescription}"> Description</td>
+        	<td th:text="${events.eventCategory}"> Category</td>
+        	<td th:text="${events.location}"> Location</td>
+        	<td th:text="${events.startDate}"> Start Date</td>
+        	<td th:text="${events.endDate}"> End Date</td>
+        	<td th:text="${events.startTime}"> Start Time</td>
+        	<td th:text="${events.endTime}"> End Time</td>
+        	<td th:text="${events.allowRegistration}"> Allow Registration</td>
+        	<td th:text="${events.adultTicketPrice}"> Adult Ticket Price</td>
+        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
+        	
+        	
+        	
+        	
+        </tr>
+        </tbody>
+        </table>
         
         
         
