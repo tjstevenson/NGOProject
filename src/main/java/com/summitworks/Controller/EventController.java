@@ -1,4 +1,4 @@
-package com.summitworks.Controller;
+package com.summitworks.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -21,9 +21,6 @@ public class EventController implements WebMvcConfigurer {
 	@Autowired
 	EventsRepo EventsRepo;
 
-	@Autowired
-	UserRepo UserRepo;
-	
 	@RequestMapping("/EventsManagement")
 	public String welcomeHotel(Model model)
 	{
@@ -72,13 +69,6 @@ public class EventController implements WebMvcConfigurer {
 		EventsRepo.save(event);
 
 		return "redirect:/EventsManagement";
-	}
-	@RequestMapping("/UserManagement")
-	public String userManagment(Model model)
-	{
-		List<User> listUsers=UserRepo.findAll();
-		model.addAttribute("user",listUsers);
-		return "UserManagement";
 	}
 
 }
