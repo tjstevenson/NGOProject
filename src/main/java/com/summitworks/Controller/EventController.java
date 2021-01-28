@@ -1,4 +1,4 @@
-package com.summitworks.Controller;
+package com.summitworks.controller;
 
 import java.util.List;
 
