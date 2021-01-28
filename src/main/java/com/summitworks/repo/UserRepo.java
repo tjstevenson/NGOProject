@@ -1,5 +1,9 @@
 package com.summitworks.repo;
 
-public class UserRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.summitworks.entity.User;
+@Repository
+public interface UserRepo extends JpaRepository<User, Integer> {
 
 }
