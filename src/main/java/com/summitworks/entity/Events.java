@@ -1,10 +1,17 @@
 package com.summitworks.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 //Created by Cristian
@@ -13,6 +20,7 @@ import javax.persistence.Table;
 public class Events {
 	// Creation of attributes 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="event_id")
 	private int eventID; 
 	@Column(name="event_name")
@@ -57,6 +65,18 @@ public class Events {
 		this.adultTicketPrice = adultTicketPrice;
 		this.childTicketPrice = childTicketPrice;
 	}
+	
+	
+	//added by TJ
+	public Events() {}
+	
+	@ManyToMany(mappedBy = "events")
+	private Set<User> users = new HashSet<>();
+	
+	public Set<User> getUsers() {
+		return users;
+	}// end
+	
 	//Setter and Getter
 	public int getEventID() {
 		return eventID;

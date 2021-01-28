@@ -4,13 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -22,20 +24,31 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	@Column(name = "last_name")
 	private String lastName;
+	
+	@Column(name = "email")
 	private String email;
+	 
+	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "role")
 	private String role;
 
-//	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
-//			cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.MERGE})
+	@JoinTable(name = "user_events",
+			joinColumns = { @JoinColumn(name = "user_id")},
+			inverseJoinColumns = { @JoinColumn(name = "event_id")}
+			)
+	private Set<Events> events = new HashSet<Events>();
 	
-//	private Set<Events> events = new HashSet<Events>();
 	
-	public User(int id, String firstName, String lastName, String email,String password, String role) {
+	public User (String firstName, String lastName, String email,String password, String role) {
 		super();
-		this.id = id;
 		this.setFirstName(firstName);
 		this.lastName = lastName;
 		this.email = email;
@@ -45,6 +58,10 @@ public class User {
 
 	public User(){}
 
+	public Set<Events> getEvents() {
+		return events;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -96,7 +113,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + ", events="  + "]";
+				+ ", password=" + password + ", role=" + role + ", events=" + events + "]";
 	}
 	
 	
