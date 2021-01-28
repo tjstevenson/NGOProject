@@ -7,13 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.summitworks.entity.Events;
-import com.summitworks.repo.EventsRepo;
+import com.summitworks.entity.*;
+import com.summitworks.repo.*;
 
 @Controller
 public class EventController {
 	@Autowired
 	EventsRepo EventsRepo;
+
+	@Autowired
+	UserRepo UserRepo;
 	
 	@RequestMapping("/EventsManagement")
 	public String welcomeHotel(Model model)
@@ -22,4 +25,13 @@ public class EventController {
 		model.addAttribute("events",listEvents);
 		return "eventManagement";
 	}
+
+	@RequestMapping("/UserManagement")
+	public String userManagment(Model model)
+	{
+		List<User> listUsers=UserRepo.findAll();
+		model.addAttribute("user",listUsers);
+		return "UserManagement";
+	}
+
 }
