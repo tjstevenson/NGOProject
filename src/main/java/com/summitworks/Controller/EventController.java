@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.summitworks.entity.Events;
-import com.summitworks.repo.EventsRepo;
+import com.summitworks.entity.*;
+import com.summitworks.repo.*;
 
 @Controller
 public class EventController implements WebMvcConfigurer {
 	@Autowired
 	EventsRepo EventsRepo;
+
+	@Autowired
+	UserRepo UserRepo;
 	
 	@RequestMapping("/EventsManagement")
 	public String welcomeHotel(Model model)
@@ -29,7 +32,8 @@ public class EventController implements WebMvcConfigurer {
 		model.addAttribute("events",listEvents);
 		return "eventManagement";
 	}
-	@RequestMapping("/EventsManagemet/insert_event")
+
+	@RequestMapping("/EventsManagement/insert_event")
 	public String requestRoom(Model model)
 	
 	{
@@ -70,4 +74,14 @@ public class EventController implements WebMvcConfigurer {
 
 		return "redirect:/list_room";
 	}
+
+
+	@RequestMapping("/UserManagement")
+	public String userManagment(Model model)
+	{
+		List<User> listUsers=UserRepo.findAll();
+		model.addAttribute("user",listUsers);
+		return "UserManagement";
+	}
+
 }
