@@ -105,9 +105,16 @@
 		                    <td th:if="${#fields.hasErrors('eventCategory')}" th:errors="*{eventCategory}">Event Category Error</td>
 		                </tr>
 		                <tr>
+		                    <td>Start Date:</td>
+		                    <td><input type="datetime-local"th:field="*{startDate}"></td>
+		                    <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Start Date Error</td>
+		                </tr>
+		                <tr>
 		                    <td><button type="submit">Submit</button></td>
 		                </tr>
+		                
 		            </table>
+		            
         </form>
 				
 				

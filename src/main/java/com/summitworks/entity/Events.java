@@ -38,9 +38,9 @@ public class Events {
 	private String eventDescription; 
 	@NotBlank
 	private String eventCategory;
-	@DateTimeFormat(pattern="yyy-mm-dd")
+	@DateTimeFormat(pattern = "mm/dd/yyyy h:mm a")
 	private Date startDate;
-	@DateTimeFormat(pattern="yyy-mm-dd")
+	@DateTimeFormat(pattern = "mm/dd/yyyy h:mm a")
 	private Date endDate; 
 	@NotNull
 	private int startTime; 
