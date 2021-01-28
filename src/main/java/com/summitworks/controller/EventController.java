@@ -60,6 +60,15 @@ public class EventController implements WebMvcConfigurer {
 		EventsRepo.deleteById(id);
 		return "redirect:/EventsManagement";
 	}
+	@RequestMapping(value = "/update_event", method = RequestMethod.POST)
+	public String updateEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("error");
+			return "edit_event";
+		}
+		EventsRepo.save(r);
+		return "redirect:/EventsManagement";
+	}
 	
 	
 
