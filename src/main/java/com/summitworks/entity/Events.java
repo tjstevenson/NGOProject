@@ -13,35 +13,26 @@ import javax.persistence.Table;
 public class Events {
 	// Creation of attributes 
 	@Id
-	@Column(name="event_id")
+	@Column
 	private int eventID; 
-	@Column(name="event_name")
 	private String eventName;
-	@Column(name="event_description")
 	private String eventDescription; 
-	@Column(name="event_category")
 	private String eventCategory;
-	@Column(name="event_start_date")
 	private Date startDate; 
-	@Column(name="event_end_date")
 	private Date endDate; 
-	@Column(name="event_start_time")
 	private Date startTime;  
-	@Column(name="event_end_time")
 	private Date endTime; 
-	@Column(name="event_location")
 	private String location; 
-	@Column(name="event_allow_registration")
-	private boolean allowRegistration;
-	@Column(name="event_image")
+	private String registration;
 	private String eventImage;
-	@Column(name="event_adult_ticket_price")
 	private double adultTicketPrice; 
-	@Column(name="event_child_ticket_price")
 	private double childTicketPrice;
 	//Constructor
-	public Events(int eventID, String eventName, String eventDescription, String eventCategory, Date startDate,
-			Date endDate, Date startTime, Date endTime, String location, boolean allowRegistration, String eventImage,
+	
+	public Events(int eventID, String eventName, String eventDescription, 
+			String eventCategory, Date startDate,
+			Date endDate, Date startTime, Date endTime, 
+			String location, String allowRegistration, String eventImage,
 			double adultTicketPrice, double childTicketPrice) {
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -52,10 +43,12 @@ public class Events {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.location = location;
-		this.allowRegistration = allowRegistration;
+		this.registration = allowRegistration;
 		this.eventImage = eventImage;
 		this.adultTicketPrice = adultTicketPrice;
 		this.childTicketPrice = childTicketPrice;
+	}
+	public Events() {
 	}
 	//Setter and Getter
 	public int getEventID() {
@@ -112,11 +105,11 @@ public class Events {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public boolean isAllowRegistration() {
-		return allowRegistration;
+	public String isAllowRegistration() {
+		return registration;
 	}
-	public void setAllowRegistration(boolean allowRegistration) {
-		this.allowRegistration = allowRegistration;
+	public void setAllowRegistration(String allowRegistration) {
+		this.registration = allowRegistration;
 	}
 	public String getEventImage() {
 		return eventImage;
@@ -141,7 +134,7 @@ public class Events {
 		return "Events [eventID=" + eventID + ", eventName=" + eventName + ", eventDescription=" + eventDescription
 				+ ", eventCategory=" + eventCategory + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", startTime=" + startTime + ", endTime=" + endTime + ", location=" + location
-				+ ", allowRegistration=" + allowRegistration + ", eventImage=" + eventImage + ", adultTicketPrice="
+				+ ", allowRegistration=" + registration + ", eventImage=" + eventImage + ", adultTicketPrice="
 				+ adultTicketPrice + ", childTicketPrice=" + childTicketPrice + "]";
 	}
 		
