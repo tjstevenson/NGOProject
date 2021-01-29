@@ -145,6 +145,11 @@
 		                    <td th:if="${#fields.hasErrors('childTicketPrice')}" th:errors="*{childTicketPrice}">Child ticket price Error</td>
 		                </tr>
 		                <tr>
+		                	<td>Select image</td>
+		                    <td><input type="file" name="myImage" accept="image/*" /></td>
+		       
+		                </tr>
+		                <tr>
 		                    <td><button type="submit">Submit</button></td>
 		                </tr>
 		                
