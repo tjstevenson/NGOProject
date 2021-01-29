@@ -31,10 +31,16 @@ public class EventController implements WebMvcConfigurer {
     private AmazonS3ClientService amazonS3ClientService;
 
 	@RequestMapping("/EventsManagement")
-	public String welcomeHotel(Model model) {
+	public String eventManagement(Model model) {
 		List<Events> listEvents = EventsRepo.findAll();
 		model.addAttribute("events", listEvents);
 		return "eventManagement";
+	}
+	@RequestMapping("/UserView")
+	public String userView(Model model) {
+		List<Events> listEvents = EventsRepo.findAll();
+		model.addAttribute("events", listEvents);
+		return  "userview";
 	}
 
 	@RequestMapping("/insert_event")
@@ -50,8 +56,18 @@ public class EventController implements WebMvcConfigurer {
 			System.out.println("error");
 			return "addEventForm";
 		}
-		System.out.println(file);
+		String name="";
+		if (file.isEmpty())
+		{
+			name="noimageupload.png";
+		}
+		else {
+			name = file.getOriginalFilename();	
+		}
+		System.out.println(name);
 		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
+		String eventImage = "https://ngobucketproject.s3.us-east-2.amazonaws.com/"+name;
+		r.setEventImage(eventImage);
 		EventsRepo.save(r);
 		return "redirect:/EventsManagement";
 	}
@@ -73,14 +89,18 @@ public class EventController implements WebMvcConfigurer {
 			System.out.println("error");
 			return "addEventForm";
 		}
-		System.out.println("file");
-		System.out.println(file);
+		String name = file.getOriginalFilename();
+		System.out.println(name);
 		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
+		String eventImage = "https://ngobucketproject.s3.us-east-2.amazonaws.com/"+name;
+		r.setEventImage(eventImage);
 		EventsRepo.save(r);
 		return "redirect:/EventsManagement";
 	}
 	@RequestMapping(value = "/insert_image", method = RequestMethod.POST)
 	public String insertImageEvent(@RequestParam("file") MultipartFile file) {
+		String name = file.getOriginalFilename();
+		System.out.println(name);
 		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
 		return "redirect:/EventsManagement";
 	}

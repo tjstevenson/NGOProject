@@ -26,7 +26,7 @@
             padding: 0;
             display: flex;
             flex-direction: row;
-            height: 100%;
+            height: 90%;
                         
         }
         div.div1{
@@ -61,7 +61,11 @@
         button{
             width: 100%;
             height: 50px;
-
+        }
+        div.div2 div.table{
+            text-align: middle;
+            display: flex;
+  			justify-content: center;
         }
 </style>
 </head>
@@ -83,50 +87,27 @@
         
 		        <div class="h3">
 						<h3>
-						Event Management
+						Events
 						</h3>
 				</div>
 				
-				<div class="addEvent">
-		 		<a th:href="@{/insert_event}"> Add a New Event</a>
-				</div>
-				
 				<div class="table">
-						 <table border="1" cellpadding="10">
+					<table border="1" cellpadding="10">
 				        <thead>
 				            <tr>
-				                <th>Event ID</th>
 				                <th>Event </th>
-				                <th>Description </th>
-				                <th>Category</th>
-				                <th>Location</th>
-				                <th>Start Date</th>
-				                <th>End Date</th>
-				                <th>Allow Registration</th>
-				                <th>Adult Ticket Price</th>
-				                <th>Child Ticket Price</th>
 				                <th></th>      
 				            </tr>
-					        </thead>
+					    </thead>
 					        <tbody>
 					        <tr th:each="events:${events}">
-					            <td th:text="${events.eventID}"> Event ID</td>
 					            <td th:text="${events.eventName}"> Event</td>
-					        	<td th:text="${events.eventDescription}"> Description</td>
-					        	<td th:text="${events.eventCategory}"> Category</td>
-					        	<td th:text="${events.location}"> Location</td>
-					        	<td th:text="${events.startDate}"> Start Date</td>
-					        	<td th:text="${events.endDate}"> End Date</td>
-					        	<td th:text="${events.eventRegistration}"> Allow Registration</td>
-					        	<td th:text="${events.adultTicketPrice}"> Adult Ticket Price</td>
-					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
-					        	<td th:text="${events.childTicketPrice}"> Child Ticket Price</td>
-					        	<td> <a th:href="@{/edit_event/{id}(id=${events.eventID})}"> Edit</a></td>
-					        	<td> <a th:href="@{/delete_event/{id}(id=${events.eventID})}"> Delete</a></td>
+					            <td th:text="${events.eventImage}"> Event</td>
+					            <td> <img th:src="${events.eventImage}" width="300" height="300"></td>	
 					        </tr>
 					        </tbody>
-					        </table>
-					      
+					  </table>
+					  
 		        </div>
         </div>
     </section>
