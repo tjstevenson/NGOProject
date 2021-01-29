@@ -15,15 +15,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.summitworks.entity.*;
 import com.summitworks.repo.*;
+import com.summitworks.services.AmazonS3ClientService;
 
 @Controller
 public class EventController implements WebMvcConfigurer {
 	@Autowired
 	EventsRepo EventsRepo;
+	@Autowired
+    private AmazonS3ClientService amazonS3ClientService;
 
 	@RequestMapping("/EventsManagement")
 	public String welcomeHotel(Model model) {
@@ -40,11 +45,13 @@ public class EventController implements WebMvcConfigurer {
 	}
 
 	@RequestMapping(value = "/insert_event", method = RequestMethod.POST)
-	public String saveEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
+	public String saveEvent(@Valid @ModelAttribute("events") Events r,@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
 			return "addEventForm";
 		}
+		System.out.println(file);
+		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
 		EventsRepo.save(r);
 		return "redirect:/EventsManagement";
 	}
@@ -61,12 +68,20 @@ public class EventController implements WebMvcConfigurer {
 		return "redirect:/EventsManagement";
 	}
 	@RequestMapping(value = "/update_event", method = RequestMethod.POST)
-	public String updateEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
+	public String updateEvent(@Valid @ModelAttribute("events") Events r,@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
-			return "edit_event";
+			return "addEventForm";
 		}
+		System.out.println("file");
+		System.out.println(file);
+		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
 		EventsRepo.save(r);
+		return "redirect:/EventsManagement";
+	}
+	@RequestMapping(value = "/insert_image", method = RequestMethod.POST)
+	public String insertImageEvent(@RequestParam("file") MultipartFile file) {
+		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
 		return "redirect:/EventsManagement";
 	}
 	
