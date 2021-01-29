@@ -101,8 +101,8 @@
 					    </thead>
 					        <tbody>
 					        <tr th:each="events:${events}">
+					        	<td><a th:href="@{/show_event/{id}(id=${events.eventID})}"> View Event </a></td>
 					            <td th:text="${events.eventName}"> Event</td>
-					            <td th:text="${events.eventImage}"> Event</td>
 					            <td> <img th:src="${events.eventImage}" width="300" height="300"></td>	
 					        </tr>
 					        </tbody>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <head>
+<meta charset="ISO-8859-1">
+<title>Event Management</title>
+<style>
+        body{
+            background: rgb(202, 200, 200);
+            color: white;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+        }
+        header {
+            background: rgb(202, 200, 200);
+            margin: 0px;
+            height: 40px;
+        }
+        section{
+            background: blue;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+                        
+        }
+        div.div1{
+            background:  rgb(202, 200, 200);
+            width: 20%; 
+        }
+        div.div2{
+            background: white;
+            width: 100%;
+            height: 100%;
+            color: black;
+            
+        }
+        div.div2 div.h3{
+             margin: 0px;
+            padding: 0px;
+            font-size: 30px;
+        }
+         div.div2 div.form{
+            width: 800px;
+    		margin: 0 auto;
+            
+        }
+        header h1{
+         color: black;
+         text-align: left;
+         height: 100%;
+    	 vertical-align: middle;
+        
+        }
+        button{
+            width: 100%;
+            height: 50px;
+
+        }
+</style>
+</head>
+<body>
+
+<header> 
+		<h1> 
+				NGO
+		</h1>
+</header>
+    <section> 
+        <div class="div1">
+        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
+        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
+        		<a th:href="@{/UserView}"> <button>User View</button></a>
+	            
+        </div>
+        <div class="div2">
+        
+		        <div class="h3">
+						<h3>
+						Event Information 
+						</h3>
+				</div>
+				<div class="form">
+						<form action="#" th:action="@{/update_event}" th:object="${events}" method="post" enctype="multipart/form-data">
+		            <table>
+		            	<tr>
+		                    <td>Id:</td>
+		                    <td><input type="text" th:field="*{eventID}" readonly="readonly" /></td>
+		                    <td th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Event Name Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Name:</td>
+		                    <td><input type="text" th:field="*{eventName}" /></td>
+		                    <td th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}">Event Name Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Description:</td>
+		                    <td><input type="text" th:field="*{eventDescription}" /></td>
+		                    <td th:if="${#fields.hasErrors('eventDescription')}" th:errors="*{eventDescription}">Event Description Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Category:</td>
+		                    <td>
+			                    <select th:field="*{eventCategory}">
+							    <option th:value="'Conference'" th:text="Conference"></option>
+							    <option th:value="'Seminar'" th:text="Seminar"></option>
+							    <option th:value="'Presentation'" th:text="Presentation"></option>
+								</select>
+		                    </td>
+		                    <td th:if="${#fields.hasErrors('eventCategory')}" th:errors="*{eventCategory}">Event Category Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Start Date:</td>
+		                    <td><input type="datetime-local"th:field="*{startDate}"></td>
+		                    <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Start Date Error</td>
+		                </tr>
+		                <tr>
+		                    <td>End Date:</td>
+		                    <td><input type="datetime-local"th:field="*{endDate}"></td>
+		                    <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">End Date Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Location:</td>
+		                    <td><input type="text" th:field="*{location}" /></td>
+		                    <td th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Event Location Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Event Registration:</td>
+		                    <td>
+			                    <select th:field="*{eventRegistration}">
+							    <option th:value="'true'" th:text="OpenRegistration"></option>
+							    <option th:value="'false'" th:text="CloseRegistration"></option>
+								</select>
+		                    </td>
+		                    <td th:if="${#fields.hasErrors('eventRegistration')}" th:errors="*{eventRegistration}">Event Registration Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Adult Ticket Price:</td>
+		                    <td><input type="text" th:field="*{adultTicketPrice}" placeholder="double" /></td>
+		                    <td th:if="${#fields.hasErrors('adultTicketPrice')}" th:errors="*{adultTicketPrice}">Adult ticket price Error</td>
+		                </tr>
+		                <tr>
+		                    <td>Child Ticket Price:</td>
+		                    <td><input type="text" th:field="*{childTicketPrice}" placeholder="double" /></td>
+		                    <td th:if="${#fields.hasErrors('childTicketPrice')}" th:errors="*{childTicketPrice}">Child ticket price Error</td>
+		                </tr>
+		                 <tr>
+		                	<td>Select image</td>
+		                    <td><input type="file" name="file" /></td>
+		       
+		                </tr>
+		                <tr>
+		                    <td><button type="submit">update</button></td>
+		                </tr>
+		                
+		            </table>
+		            
+        </form>
+				
+				
+				
+				
+				</div>
+
+				
+				
+        </div>
+    </section>
+
+ </body>
+
+  
+</html>
