@@ -22,27 +22,41 @@
             height: 40px;
         }
         section{
-            background: blue;
             padding: 0;
             display: flex;
             flex-direction: row;
             height: 100%;             
         }
         div.div1{
-            background:  rgb(202, 200, 200); 
-            width: 80%;
+        	text-align: center;
+            background: white;
+             vertical-align: middle;
+            width: 30%;
+            height: 100%;
+            color: black; 
         }
         div.div2{
+        	text-align: center;
             background: white;
-            width: 100%;
+            width: 30%;
             height: 100%;
             color: black;    
         }
          div.div3{
+         	text-align: center;
             background: white;
-            width: 100%;
+            width: 40%;
             height: 100%;
             color: black;    
+        }
+        div.header {
+        background: white;
+        height: 10xp;
+        margin: 0px;
+         color: black; 
+         text-align: middle;
+         vertical-align: middle;
+        
         }
         header h1{
          color: black;
@@ -54,6 +68,17 @@
             width: 100%;
             height: 50px;
         }
+        input{
+            margin: 10px;
+            width: 90%;
+            height: 50px;
+        }
+        input.description{
+            margin: 10px;
+            width: 90%;
+            height: 180px;
+        
+        }
 </style>
 </head>
 <body>
@@ -63,29 +88,70 @@
 				NGO
 		</h1>
 </header>
+	<div class="header">
+	     <h3> 
+				
+				Event Registration Detail :  
+		</h3>
+	</div>
     <section> 
         <div class="div1">
-        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
-        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
-        		<a th:href="@{/UserView}"> <button>User View</button></a>
-	            
+        
+        		<br>
+        		<br>
+        		   Event Name:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        		   Category:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        			Location:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        			Start Date and Time:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        			End Date and Time:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        		
         </div>
         <div class="div2">
-        
-		        <div class="h3">
-						<h3>
-						Event Information 
-						</h3>
-				</div>
-				
+                <br>
+        		<br>
+        		   Description:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        		<br>
+        		<br>
+        		<br>
+        		   Adult Ticket Prices:
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		<br>
+        			Child Ticket Prices;
+        		<br>
+        		<p th:text="${events.eventName}">Test</p>
+        		
+		        
         </div>
         <div class="div3">
-        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
-        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
-        		<a th:href="@{/UserView}"> <button>User View</button></a>
-       			 </div>	
+        		<br>
+        		<br>
+        		   Event Image
+        		   <br>
+        		   <img th:src="${events.eventImage}" width="600" height="445">
+        		<br>
+        		
+       	</div>	
+       	
     </section>
-
  </body>
 
   

@@ -26,7 +26,7 @@
             padding: 0;
             display: flex;
             flex-direction: row;
-            height: 90%;
+            height: 100%;
                         
         }
         div.div1{
@@ -38,18 +38,17 @@
             width: 100%;
             height: 100%;
             color: black;
-            overflow-y: scroll;
             
         }
-        div.div2 div.addEvent{
-            background: white;
-            width: 100%;
-            color: black;
-            vertical-align: middle;
-            text-align: right;
+        div.div2 div.h3{
              margin: 0px;
             padding: 0px;
             font-size: 30px;
+        }
+         div.div2 div.form{
+            width: 800px;
+    		margin: 0 auto;
+            
         }
         header h1{
          color: black;
@@ -61,11 +60,7 @@
         button{
             width: 100%;
             height: 50px;
-        }
-        div.div2 div.table{
-            text-align: middle;
-            display: flex;
-  			justify-content: center;
+
         }
 </style>
 </head>
@@ -76,39 +71,34 @@
 				NGO
 		</h1>
 </header>
-    <section> 
-        <div class="div1">
-        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
-        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
-        		<a th:href="@{/UserView}"> <button>User View</button></a>
-	            
-        </div>
-        <div class="div2">
-        
 		        <div class="h3">
 						<h3>
-						Events
+						Event Information 
 						</h3>
 				</div>
+    <section> 
+        <div class="div2">
+				<div class="form">
+						<form action="#" th:action="@{/update_event}" th:object="${events}" method="post" enctype="multipart/form-data">
+						Id:
+						<input type="text" th:field="*{eventID}" readonly="readonly" /><br>
+						Name:
+						<input type="text" th:field="*{eventName}"/><br>
+						Email:
+						<input type="text" th:field="*{eventDescription}"/><br>
+						Country:
+						<input type="text" th:field="*{eventCategory}"/><br>
+		            
+		            
+        </form>
 				
-				<div class="table">
-					<table border="1" cellpadding="10">
-				        <thead>
-				            <tr>
-				                <th>Event </th>
-				                <th></th>      
-				            </tr>
-					    </thead>
-					        <tbody>
-					        <tr th:each="events:${events}">
-					        	<td><a th:href="@{/insert_event}"> View Event</a></td>
-					            <td th:text="${events.eventName}"> Event</td>
-					            <td> <img th:src="${events.eventImage}" width="300" height="300"></td>	
-					        </tr>
-					        </tbody>
-					  </table>
-					  
-		        </div>
+				
+				
+				
+				</div>
+
+				
+				
         </div>
     </section>
 

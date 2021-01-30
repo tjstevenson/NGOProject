@@ -80,7 +80,7 @@ public class EventController implements WebMvcConfigurer {
 	}
 	@RequestMapping("/show_event/{id}")
 	public ModelAndView showEvent(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_event");
+		ModelAndView mav = new ModelAndView("edit_event2");
 		Optional<Events> e =EventsRepo.findById(id);
 		mav.addObject("events",e);
 		return mav;
@@ -111,7 +111,5 @@ public class EventController implements WebMvcConfigurer {
 		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
 		return "redirect:/EventsManagement";
 	}
-	
-	
 
 }
