@@ -79,11 +79,15 @@ public class EventController implements WebMvcConfigurer {
 		return mav;
 	}
 	@RequestMapping("/show_event/{id}")
-	public ModelAndView showEvent(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_event2");
-		Optional<Events> e =EventsRepo.findById(id);
-		mav.addObject("events",e);
-		return mav;
+	public String showEvent(@PathVariable(name = "id") int id,Model model) {
+		Optional<Events> eventResponse =  EventsRepo.findById(id);
+		Events e = eventResponse.get();
+		String eventName = e.getEventName();
+		System.out.println(eventName);
+	
+		model.addAttribute("events", e);
+		
+		return "showEvent";
 	}
 	@RequestMapping("/delete_event/{id}")
 	public String deleteEvent(@PathVariable(name = "id") int id) {

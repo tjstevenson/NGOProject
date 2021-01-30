@@ -101,7 +101,7 @@
 					    </thead>
 					        <tbody>
 					        <tr th:each="events:${events}">
-					        	<td><a th:href="@{/insert_event}"> View Event</a></td>
+					        	<td><a th:href="@{/show_event/{id}(id=${events.eventID})}"> View Event</a></td>
 					            <td th:text="${events.eventName}"> Event</td>
 					            <td> <img th:src="${events.eventImage}" width="300" height="300"></td>	
 					        </tr>

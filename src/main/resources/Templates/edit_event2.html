@@ -79,22 +79,9 @@
     <section> 
         <div class="div2">
 				<div class="form">
-						<form action="#" th:action="@{/update_event}" th:object="${events}" method="post" enctype="multipart/form-data">
-						Id:
-						<input type="text" th:field="*{eventID}" readonly="readonly" /><br>
-						Name:
-						<input type="text" th:field="*{eventName}"/><br>
-						Email:
-						<input type="text" th:field="*{eventDescription}"/><br>
-						Country:
-						<input type="text" th:field="*{eventCategory}"/><br>
-		            
-		            
-        </form>
+				<span th:text = "'Hello Welcome to, '+ ${eventName}"></span>
 				
-				
-				
-				
+
 				</div>
 
 				

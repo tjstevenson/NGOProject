@@ -79,6 +79,18 @@
             height: 180px;
         
         }
+        div.title
+        {
+        background-color: lightgrey;
+        margin: 10px;
+        border: 1px solid black;
+        }
+         div.content
+        {
+        background-color: white;
+        margin: 10px;
+        border: 1px solid black;
+        }
 </style>
 </head>
 <body>
@@ -99,53 +111,66 @@
         
         		<br>
         		<br>
-        		   Event Name:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
-        		   Category:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
-        			Location:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
+        		<div class="title">
+        		   		Event Name:
+        		</div>
+        		<div class="content">
+        				<p th:text="${events.eventName}">Test</p>
+        		</div>
+        		<div class="title">
+        		   		Category:
+        		</div>
+        		<div class="content">
+        				<p th:text="${events.eventCategory}">Test</p>
+        		</div>
+        		<div class="title">
+        				Location:
+        		</div>
+        		<div class="content">
+        		<p th:text="${events.location}">Test</p>
+        		</div>
+        		<div class="title">
         			Start Date and Time:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
+        		</div>
+        		<div class="content">
+        		<p th:text="${events.startDate}">Test</p>
+        		</div>
+        		<div class="title">
         			End Date and Time:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
+        		</div>
+        		<div class="content">
+        		<p th:text="${events.endDate}">Test</p>
+        		</div>
         		
         </div>
         <div class="div2">
                 <br>
-        		<br>
-        		   Description:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
-        		<br>
-        		<br>
-        		<br>
+                <br>
+        		<div class="title">
+        		   		Description:
+        		 </div>
+        		<div class="content">
+        				<p th:text="${events.eventDescription}">Test</p>
+        		</div>
+        		<div class="title">
         		   Adult Ticket Prices:
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		<br>
+        		</div>
+        		<div class="content">
+        		<p th:text="${events.adultTicketPrice}">Test</p>
+        		</div>
+        		<div class="title">
         			Child Ticket Prices;
-        		<br>
-        		<p th:text="${events.eventName}">Test</p>
-        		
-		        
+        		</div>
+        		<div class="content">
+        		<p th:text="${events.childTicketPrice}">Test</p>
+        		</div>
         </div>
         <div class="div3">
         		<br>
-        		<br>
+                <br>
+        		<div class="title">
         		   Event Image
-        		   <br>
+        		</div>
         		   <img th:src="${events.eventImage}" width="600" height="445">
         		<br>
         		
