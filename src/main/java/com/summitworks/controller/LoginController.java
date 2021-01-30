@@ -2,37 +2,33 @@ package com.summitworks.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.summitworks.entity.User;
-import com.summitworks.repo.UserRepo;
-import com.summitworks.services.UserService;
 
 @Controller
 public class LoginController {
  
-	@Autowired
-	UserService uservice;
-	
-	@Autowired
-	UserRepo urepo;
-	
-    @RequestMapping("/login")
-    public String viewLoginPage() {
-    	
-        return "login";
-    }
-    
-    @RequestMapping("/doLogin")
-    public String doLogin() {
-    	List<User> list = urepo.findAll();
-    	//User u = uservice.authenticate(email, password) 
-    	
-    	return "redirect:/EventsManagement";
-    }
-    
-    
+	@RestController
+	public class HomeResource {
+
+		@GetMapping("/")
+		public String home() {
+			System.out.println("Home");
+			return("<h1>Welcome</h1>");
+		}
+		
+		@GetMapping("/user")
+		public String user() {
+			System.out.println("User");
+			return("<h1>Welcome User</h1>");
+		}
+		
+		@GetMapping("/admin")
+		public String admin() {
+			System.out.println("Admin");
+			return("<h1>Welcome Admin</h1>");
+		}
+	}   
 }

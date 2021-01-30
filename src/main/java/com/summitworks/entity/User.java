@@ -39,6 +39,9 @@ public class User {
 	@NotBlank(message = "Email is required")
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "userName")
+	private String userName;
 	
 	@NotBlank(message = "Password is required")
 	@Column(name = "password")
@@ -58,11 +61,12 @@ public class User {
 	private Set<Events> events = new HashSet<Events>();
 	
 	
-	public User (String firstName, String lastName, String email,String password, String role, boolean active) {
+	public User (String firstName, String lastName, String email, String userName, String password, String role, boolean active) {
 		super();
 		this.setFirstName(firstName);
 		this.lastName = lastName;
 		this.email = email;
+		this.userName = userName;
 		this.password = password;
 		this.role = role;
 		this.active = active;
@@ -133,7 +137,13 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + ", events=" + events + "]";
+				+ ", userName=" + userName + ", password=" + password + ", role=" + role + ", active=" + active
+				+ ", events=" + events + "]";
+	}
+
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		return userName;
 	}
 	
 	
