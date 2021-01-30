@@ -33,10 +33,10 @@ class NgoProjectApplicationTests {
 		Date d3 = new Date();
 		Date d4 = new Date();
 		
-		User u1 = new User("Bob", "Smith", "bob@mail.com","password", "admin");
-		User u2 = new User("mike", "jones", "mike@mail.com","password", "user");
-		User u3 = new User("Jane", "Brady", "Jane@mail.com","password", "admin");
-		User u4 = new User("Alex", "Stevens", "alex@mail.com","password", "user");
+		User u1 = new User("Bob", "Smith", "bob@mail.com","password", "ROLE_ADMIN", true);
+		User u2 = new User("mike", "jones", "mike@mail.com","password", "ROLE_USER", true);
+		User u3 = new User("Jane", "Brady", "Jane@mail.com","password", "ROLE_ADMIN", true);
+		User u4 = new User("Alex", "Stevens", "alex@mail.com","password", "ROLE_USER", true);
 		//		
 //		Events event = new Events(1,"name", "description", "category", d1, d2,
 //				3, 4,"location","image", true, 20.00, 20.00);

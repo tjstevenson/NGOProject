@@ -47,6 +47,9 @@ public class User {
 	@Column(name = "role")
 	private String role;
 
+	@Column(name = "Active")
+	private boolean active;
+	
 	@ManyToMany(cascade = {CascadeType.MERGE})
 	@JoinTable(name = "user_events",
 			joinColumns = { @JoinColumn(name = "user_id")},
@@ -55,13 +58,14 @@ public class User {
 	private Set<Events> events = new HashSet<Events>();
 	
 	
-	public User (String firstName, String lastName, String email,String password, String role) {
+	public User (String firstName, String lastName, String email,String password, String role, boolean active) {
 		super();
 		this.setFirstName(firstName);
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.active = active;
 	}
 
 	public User(){}
@@ -118,6 +122,14 @@ public class User {
 		this.role = role;
 	}
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
