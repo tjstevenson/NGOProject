@@ -64,7 +64,10 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		 <dependency>
+             <groupId>nz.net.ultraq.thymeleaf</groupId>
+             <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
 		<dependency>
 		  <groupId>com.amazonaws</groupId>
 		  <artifactId>aws-java-sdk</artifactId>
