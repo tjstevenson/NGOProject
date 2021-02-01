@@ -15,17 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-
-
 
 
 @Entity
 @Table(name = "User")
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -42,6 +39,7 @@ public class User {
 	
 	@NotBlank(message = "Email is required")
 	@Column(name = "email")
+	@Email(message="{errors.invalid_email}")
 	private String email;
 
 	@Column(name = "userName")

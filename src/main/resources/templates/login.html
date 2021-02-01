@@ -1,30 +1,122 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Login - NGO Project</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<style>
+        body{
+            background: rgb(202, 200, 200);
+            color: white;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: fixed;
+            margin: 0px;
+            padding: 0px;
+        }
+        header {
+            background: rgb(202, 200, 200);
+            margin: 0px;
+            height: 40px;
+        }
+        section{
+            background: white;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            height: 90%;
+            text-align: center;
+            vertical-align: middle;
+            color: black;
+            
+                        
+        }
 
+        header h1{
+         color: black;
+         text-align: left;
+         height: 100%;
+    	 vertical-align: middle;
+        
+        }
+        div.div1
+        {
+        text-align: center;
+            background: white;
+             vertical-align: middle;
+        }
+     
+</style>
 </head>
 <body>
-<div class="container-fluid text-center">
-    
-    <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
-         
-        <div class="border border-secondary p-3 rounded">
-            <p>Please Log Into System</p>
-            <p>
-                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
-            </p>
-            <p>
-                <input type="password" name="password" class="form-control" placeholder="Password" required />
-            </p>
 
-            <p>
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </p>
-        </div>
-    </form>      
-</div>
+<header> 
+		<h1> 
+				NGO
+		</h1>
+</header>
+    <section> 
+    <div class="div1">
+	    <form action="home" th:action="@{/login}" method="post">
+							<div>
+								<div class="title">
+					        		   		Email
+					        	</div>
+								<input type="email" class="form-control" name="username"
+									placeholder="Email" /> <span
+									class="glyphicon glyphicon-envelope form-control-feedback"></span>
+							</div>
+							<div>
+							<div class="title">
+					        		   		Password
+					        	</div>
+								<input type="password" class="form-control" name="password"
+									placeholder="Password" /> <span
+									class="glyphicon glyphicon-lock form-control-feedback"></span>
+							</div>
+							<div>
+								<label>
+							      <input type="checkbox" name="remember-me"> Remember Me
+							    </label>
+							</div>
+							<div>
+								<div >
+									<button type="submit" class="btn btn-primary btn-block btn-flat"
+										th:text="#{label.login}">LogIn</button>
+								</div>
+							</div>
+							<div>
+								<div >
+									<div th:if="${param.error}"
+										class="alert alert-danger alert-dismissable">
+										<p>
+											<i class="icon fa fa-ban"></i> <span
+												th:text="#{error.login_failed}">Invalid Email and
+												Password.</span>
+										</p>
+									</div>
+									<div th:if="${param.logout}"
+										class="alert alert-info alert-dismissable">
+										<p>
+											<i class="icon fa fa-info"></i> <span
+												th:text="#{info.logout_success}">You have been logged
+												out.</span>
+										</p>
+									</div>
+									<div th:if="${msg!=null}"
+										class="alert alert-warning alert-dismissable">
+										<p>
+											<i class="icon fa fa-warning"></i> <span th:text="${msg}"></span>
+										</p>
+									</div>
+								</div>
+	
+							</div>
+						</form>
+    
+		</div>
+    </section>
 </body>
 </html>

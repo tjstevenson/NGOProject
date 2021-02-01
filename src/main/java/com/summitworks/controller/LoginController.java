@@ -1,3 +1,4 @@
+/*
 package com.summitworks.controller;
 
 import java.util.List;
@@ -32,3 +33,4 @@ public class LoginController {
 		}
 	}   
 }
+*/

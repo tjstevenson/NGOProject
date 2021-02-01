@@ -30,7 +30,7 @@ public class EventController implements WebMvcConfigurer {
 	@Autowired
     private AmazonS3ClientService amazonS3ClientService;
 
-	@RequestMapping("/EventsManagement")
+	@RequestMapping("/home")
 	public String eventManagement(Model model) {
 		List<Events> listEvents = EventsRepo.findAll();
 		model.addAttribute("events", listEvents);
