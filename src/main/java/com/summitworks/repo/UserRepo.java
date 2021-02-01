@@ -9,4 +9,5 @@ import com.summitworks.entity.User;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
 	Optional<User> findByUserName(String userName);
+	Optional<User> findByUserEmail(String email);
 }

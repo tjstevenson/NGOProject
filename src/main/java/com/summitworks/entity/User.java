@@ -1,6 +1,7 @@
 package com.summitworks.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+
+
 
 
 @Entity
@@ -47,9 +51,6 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "role")
-	private String role;
-
 	@Column(name = "Active")
 	private boolean active;
 	
@@ -60,6 +61,13 @@ public class User {
 			)
 	private Set<Events> events = new HashSet<Events>();
 	
+	@ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+       name="user_role",
+       joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+       inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+    private List<Role> roles;
+	
 	
 	public User (String firstName, String lastName, String email, String userName, String password, String role, boolean active) {
 		super();
@@ -68,7 +76,6 @@ public class User {
 		this.email = email;
 		this.userName = userName;
 		this.password = password;
-		this.role = role;
 		this.active = active;
 	}
 
@@ -118,14 +125,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
     public boolean isActive() {
         return active;
     }
@@ -133,11 +132,19 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+    public List<Role> getRoles()
+    {
+        return roles;
+    }
+    public void setRoles(List<Role> roles)
+    {
+        this.roles = roles;
+    }
 	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", userName=" + userName + ", password=" + password + ", role=" + role + ", active=" + active
+				+ ", userName=" + userName + ", password=" + password + ", active=" + active
 				+ ", events=" + events + "]";
 	}
 
