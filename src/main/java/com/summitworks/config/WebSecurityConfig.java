@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/NGOproject-0.0.1-SNAPSHOT//home")
+                .defaultSuccessUrl("/NGOproject-0.0.1-SNAPSHOT/home")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
