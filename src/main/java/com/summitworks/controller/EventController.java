@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.summitworks.entity.Events;
+import com.summitworks.repo.EventsRepo;
 import com.summitworks.services.AmazonS3ClientService;
 
 
@@ -28,7 +29,7 @@ import com.summitworks.services.AmazonS3ClientService;
 @Controller
 public class EventController implements WebMvcConfigurer {
 	@Autowired
-	com.summitworks.repo.EventsRepo EventsRepo;
+	EventsRepo EventsRepo;
 	@Autowired
     private AmazonS3ClientService amazonS3ClientService;
 

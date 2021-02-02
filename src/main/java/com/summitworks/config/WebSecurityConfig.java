@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
               .tokenRepository(persistentTokenRepository())
               .tokenValiditySeconds(24 * 60 * 60)
               .and()
-            .exceptionHandling()
+            .exceptionHandling().accessDeniedPage("/403")
               ;
     }
     
