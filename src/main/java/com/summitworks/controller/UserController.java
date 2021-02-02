@@ -23,6 +23,7 @@ import com.summitworks.entity.User;
 import com.summitworks.repo.UserRepository;
 
 @Controller
+@RequestMapping("/NGOproject-0.0.1-SNAPSHOT/")
 public class UserController implements WebMvcConfigurer {
 
 	@Autowired

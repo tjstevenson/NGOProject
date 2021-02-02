@@ -26,6 +26,7 @@ import com.summitworks.services.AmazonS3ClientService;
 
 
 @Controller
+@RequestMapping("/NGOproject-0.0.1-SNAPSHOT/")
 public class EventController implements WebMvcConfigurer {
 	@Autowired
 	com.summitworks.repo.EventsRepo EventsRepo;
