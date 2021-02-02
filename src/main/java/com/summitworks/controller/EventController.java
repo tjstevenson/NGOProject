@@ -53,7 +53,10 @@ public class EventController implements WebMvcConfigurer {
 	}
 
 	@RequestMapping(value = "/admin/insert_event", method = RequestMethod.POST)
-	public String saveEvent(@Valid @ModelAttribute("events") Events r,@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
+	public String saveEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult ,@RequestParam("file") MultipartFile file) {
+		System.out.println("Post");
+		
+		System.out.println(bindingResult.hasErrors());
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
 			return "addEventForm";
