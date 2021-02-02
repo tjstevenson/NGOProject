@@ -11,6 +11,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import com.summitworks.entity.Events;
+import com.summitworks.entity.User;
 import com.summitworks.repo.EventsRepo;
 
 //hello #4
@@ -31,7 +32,6 @@ public class NgoProjectApplication extends SpringBootServletInitializer implemen
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
 		
 		
 		

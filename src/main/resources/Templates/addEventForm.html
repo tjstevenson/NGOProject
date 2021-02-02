@@ -73,9 +73,12 @@
 </header>
     <section> 
         <div class="div1">
-        		<a th:href="@{/UserManagement}"> <button>User Management</button></a>
-        		<a th:href="@{/EventsManagement}"> <button>Events Management</button></a>
-        		<a th:href="@{/UserView}"> <button>User View</button></a>
+        		<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/admin/UserManagement}"> <button>User Management</button></a>
+		        	<a th:href="@{/admin/eventManagement}"> <button>Events Management</button></a>
+				</div>
+        		<a th:href="@{/home}"> <button>User View</button></a>
+        		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>
 	            
         </div>
         <div class="div2">
@@ -86,7 +89,7 @@
 						</h3>
 				</div>
 				<div class="form">
-						<form action="#" th:action="@{/insert_event}" th:object="${events}" method="post" enctype="multipart/form-data">
+						<form action="#" th:action="@{/admin/insert_event}" th:object="${events}" method="post" enctype="multipart/form-data">
 		            <table>
 		                <tr>
 		                    <td>Event Name:</td>

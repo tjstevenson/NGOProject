@@ -19,38 +19,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import com.summitworks.entity.*;
-import com.summitworks.repo.*;
+
+import com.summitworks.entity.Events;
 import com.summitworks.services.AmazonS3ClientService;
+
+
 
 @Controller
 public class EventController implements WebMvcConfigurer {
 	@Autowired
-	EventsRepo EventsRepo;
+	com.summitworks.repo.EventsRepo EventsRepo;
 	@Autowired
     private AmazonS3ClientService amazonS3ClientService;
 
-	@RequestMapping("/home")
+	@RequestMapping("/admin/eventManagement")
 	public String eventManagement(Model model) {
 		List<Events> listEvents = EventsRepo.findAll();
 		model.addAttribute("events", listEvents);
 		return "eventManagement";
 	}
-	@RequestMapping("/UserView")
+	@RequestMapping("/home")
 	public String userView(Model model) {
 		List<Events> listEvents = EventsRepo.findAll();
 		model.addAttribute("events", listEvents);
 		return  "userview";
 	}
 
-	@RequestMapping("/insert_event")
+	@RequestMapping("/admin/insert_event")
 	public String insertEvent(Model model) {
 		Events e = new Events();
 		model.addAttribute(e);
 		return "addEventForm";
 	}
 
-	@RequestMapping(value = "/insert_event", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/insert_event", method = RequestMethod.POST)
 	public String saveEvent(@Valid @ModelAttribute("events") Events r,@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
@@ -69,9 +71,9 @@ public class EventController implements WebMvcConfigurer {
 		String eventImage = "https://ngobucketproject.s3.us-east-2.amazonaws.com/"+name;
 		r.setEventImage(eventImage);
 		EventsRepo.save(r);
-		return "redirect:/EventsManagement";
+		return "redirect:/home";
 	}
-	@RequestMapping("/edit_event/{id}")
+	@RequestMapping("/admin/edit_event/{id}")
 	public ModelAndView showEditEvent(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_event");
 		Optional<Events> e =EventsRepo.findById(id);
@@ -89,12 +91,12 @@ public class EventController implements WebMvcConfigurer {
 		
 		return "showEvent";
 	}
-	@RequestMapping("/delete_event/{id}")
+	@RequestMapping("/admin/delete_event/{id}")
 	public String deleteEvent(@PathVariable(name = "id") int id) {
 		EventsRepo.deleteById(id);
-		return "redirect:/EventsManagement";
+		return "redirect:/home";
 	}
-	@RequestMapping(value = "/update_event", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/update_event", method = RequestMethod.POST)
 	public String updateEvent(@Valid @ModelAttribute("events") Events r,@RequestParam("file") MultipartFile file, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("error");
@@ -106,14 +108,23 @@ public class EventController implements WebMvcConfigurer {
 		String eventImage = "https://ngobucketproject.s3.us-east-2.amazonaws.com/"+name;
 		r.setEventImage(eventImage);
 		EventsRepo.save(r);
-		return "redirect:/EventsManagement";
+		return "redirect:/home";
+	}
+	@RequestMapping(value = "/register_event/{id}", method = RequestMethod.POST)
+	public String registerEvent(@Valid @ModelAttribute("events") Events r, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("error");
+			return "addEventForm";
+		}
+		EventsRepo.save(r);
+		return "redirect:/home";
 	}
 	@RequestMapping(value = "/insert_image", method = RequestMethod.POST)
 	public String insertImageEvent(@RequestParam("file") MultipartFile file) {
 		String name = file.getOriginalFilename();
 		System.out.println(name);
 		this.amazonS3ClientService.uploadFileToS3Bucket(file, true);
-		return "redirect:/EventsManagement";
+		return "redirect:/home";
 	}
 
 }

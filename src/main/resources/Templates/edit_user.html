@@ -79,7 +79,8 @@
 		        	<a th:href="@{/admin/eventManagement}"> <button>Events Management</button></a>
 				</div>
         		<a th:href="@{/home}"> <button>User View</button></a>
-        		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>
+        		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>s
+	            
         </div>
         <div class="div2">
         
@@ -91,6 +92,11 @@
 				<div class="form">
 						<form action="#" th:action="@{/admin/insert_user}" th:object="${user}" method="post">
 		            <table>
+		                 <tr>
+		                    <td>Id:</td>
+		                    <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
+		                    <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Event Name Error</td>
+		                </tr>
 		                <tr>
 		                    <td>First Name:</td>
 		                    <td><input type="text" th:field="*{firstname}" class="form-control" placeholder="First Name" required/></td>
@@ -125,7 +131,7 @@
 		                </tr>
 		                
 		                <tr>
-		                    <td><button type="submit">Submit</button></td>
+		                    <td><button type="submit">Update</button></td>
 		                </tr>
 		                
 		            </table>

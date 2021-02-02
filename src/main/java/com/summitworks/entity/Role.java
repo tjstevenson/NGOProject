@@ -2,6 +2,7 @@ package com.summitworks.entity;
 
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +12,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-
 @Entity
 @Table(name = "roles")
 public class Role {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(nullable = false, unique = true)
     @NotEmpty
@@ -47,5 +47,4 @@ public class Role {
     public void setUsers(List < User > users) {
         this.users = users;
     }
-
 }

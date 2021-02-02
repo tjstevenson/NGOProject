@@ -10,14 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.summitworks.entity.Events;
 import com.summitworks.entity.User;import com.summitworks.repo.EventsRepo;
-import com.summitworks.repo.UserRepo;
+
 
 @SpringBootTest
 class NgoProjectApplicationTests {
 
-	@Autowired
-	private UserRepo userRepo;
-	
 	@Autowired
 	private EventsRepo eventsRepo;
 	

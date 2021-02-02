@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
       <head>
 <meta charset="ISO-8859-1">
 <title>Event Management</title>
@@ -164,11 +165,23 @@
         		<div class="content">
         		<p th:text="${events.childTicketPrice}">Test</p>
         		</div>
+        		<div class="title">
+        			Register:
+        		</div>
+        		<div class="content">
+        		<a th:href="@{/register_event/{id}(id=${events.eventID})}"><button> Register to event</button></a>
+        		</div>
+        		<div class="title">
+        			Back to events:
+        		</div>
+        		<div class="content">
+        		<a th:href="@{/home}"><button> Cancel</button></a>
+        		</div>
         </div>
         <div class="div3">
         		<br>
                 <br>
-        		<div class="title">
+        		<div class="titles">
         		   Event Image
         		</div>
         		   <img th:src="${events.eventImage}" width="600" height="445">

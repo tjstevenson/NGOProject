@@ -77,14 +77,7 @@ public class Events {
 	public Events() {
 	}
 	// getter and setters
-	
-	@ManyToMany(mappedBy = "events")
-	private Set<User> users = new HashSet<>();
-	
-	public Set<User> getUsers() {
-		return users;
-	}// end
-	
+		
 	//Setter and Getter
 	public int getEventID() {
 		return eventID;
