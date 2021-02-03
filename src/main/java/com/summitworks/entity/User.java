@@ -79,22 +79,27 @@ public class User
 	{
 		this.roles = roles;
 	}
-	public String getFirstname() {
-		return firstname;
-	}
+
 	public String getLastname() {
 		return lastname;
 	}
 	public String getRole() {
 		return role;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	
+
+	
 }

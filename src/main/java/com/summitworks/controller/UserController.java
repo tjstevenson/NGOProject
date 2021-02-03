@@ -7,6 +7,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.summitworks.entity.Events;
+import com.summitworks.entity.EventsRegistration;
 import com.summitworks.entity.Role;
 import com.summitworks.entity.User;
+import com.summitworks.repo.EventsRegistrationRepo;
+import com.summitworks.repo.EventsRepo;
 import com.summitworks.repo.UserRepository;
 
 @Controller
@@ -27,7 +35,11 @@ public class UserController implements WebMvcConfigurer {
 
 	@Autowired
 	UserRepository UserRepo;
-	
+	@Autowired
+	EventsRepo EventsRepo;
+	@Autowired
+	EventsRegistrationRepo EventsRegistrationRepo;
+		
 	@Autowired
 	PasswordEncoder PasswordEncoder;
 	@Autowired
@@ -92,6 +104,27 @@ public class UserController implements WebMvcConfigurer {
 	public String deleteEvent(@PathVariable(name = "id") int id) {
 		UserRepo.deleteById(id);
 		return "redirect:/admin/UserManagement";
+	}
+	@RequestMapping("/register_event/{id}")
+	public String addEvent(Model model, @PathVariable(name = "id") int id,RedirectAttributes redirAttrs) {
+		Optional<Events> e=EventsRepo.findById(id);
+		model.addAttribute(e);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
+		Optional<User> u=UserRepo.findByEmail(auth.getName());
+		int eventid = id;
+		User userr = u.get();
+		int userid =userr.getId();
+		String email = userr.getEmail();
+		String name =userr.getFirstname();
+		EventsRegistration er=new EventsRegistration();
+		er.setEventID(eventid);
+		er.setUserEmail(email);
+		er.setUserFirstName(name);
+		er.setUserID(userid);
+		EventsRegistrationRepo.save(er);
+		redirAttrs.addFlashAttribute("message", "Successfull Registration");
+
+		return "redirect:/home";
 	}
 	
 }

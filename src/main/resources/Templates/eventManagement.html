@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
       
-      >
       <head>
 <meta charset="ISO-8859-1">
 <title>Event Management</title>
@@ -25,11 +24,12 @@
             height: 40px;
         }
         section{
-            background: blue;
+            background: white;
             padding: 0;
             display: flex;
             flex-direction: row;
             height: 100%;
+            color: black;
                         
         }
         div.div1{
@@ -44,7 +44,7 @@
             overflow-y: scroll;
             
         }
-        div.div2 div.addEvent{
+        div.addEvent{
             background: white;
             width: 100%;
             color: black;
@@ -66,15 +66,18 @@
             height: 50px;
 
         }
+        div.name{
+        color: black;
+         text-align: right;
+        }
 </style>
 </head>
 <body>
 
 <header> 
 		<h1> 
-				NGO	   
+				NGO 
 		</h1>
-
 		
 </header>
     <section> 
@@ -84,14 +87,19 @@
 		        	<a th:href="@{/admin/eventManagement}"> <button>Events Management</button></a>
 				</div>
         		<a th:href="@{/home}"> <button>User View</button></a>
-        		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>
-	            
+        		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>   
+        		
         </div>
-        <div class="div2">
+        <div>
+        <div class="name">
+		        		<h2>
+						<span sec:authentication="name"></span>
+						</h2>
+				</div>
         
 		        <div class="h3">
 						<h3>
-						Event Management test
+						Event Management
 						</h3>
 				</div>
 				

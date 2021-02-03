@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
       <head>
 <meta charset="ISO-8859-1">
 <title>Event Management</title>
@@ -62,6 +63,10 @@
             height: 50px;
 
         }
+                div.name{
+        color: black;
+         text-align: right;
+        }
 </style>
 </head>
 <body>
@@ -79,8 +84,14 @@
 				</div>
         		<a th:href="@{/home}"> <button>User View</button></a>
         		<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><button>Logout</button></a></p>   
+        		
         </div>
         <div class="div2">
+        <div class="name">
+		        		<h2>
+						<span sec:authentication="name"></span>
+						</h2>
+				</div>
         
 		        <div class="h3">
 						<h3>
