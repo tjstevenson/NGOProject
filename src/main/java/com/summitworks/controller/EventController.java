@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.summitworks.entity.Events;
+import com.summitworks.entity.EventsRegistration;
+import com.summitworks.repo.EventsRegistrationRepo;
 import com.summitworks.repo.EventsRepo;
 import com.summitworks.services.AmazonS3ClientService;
 
@@ -31,6 +33,9 @@ public class EventController implements WebMvcConfigurer {
 	@Autowired
 	EventsRepo EventsRepo;
 	@Autowired
+	EventsRegistrationRepo EventsRegistrationRepo;
+
+	@Autowired
     private AmazonS3ClientService amazonS3ClientService;
 
 	@RequestMapping("/admin/eventManagement")
@@ -38,6 +43,12 @@ public class EventController implements WebMvcConfigurer {
 		List<Events> listEvents = EventsRepo.findAll();
 		model.addAttribute("events", listEvents);
 		return "eventManagement";
+	}
+	@RequestMapping("/admin/eventRegistration")
+	public String eventRegistration(Model model) {
+		List<EventsRegistration> listEventsRe = EventsRegistrationRepo.findAll();
+		model.addAttribute("eventsReg", listEventsRe);
+		return "eventRegistration";
 	}
 	@RequestMapping("/home")
 	public String userView(Model model) {
